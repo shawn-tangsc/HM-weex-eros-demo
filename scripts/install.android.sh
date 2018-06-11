@@ -34,18 +34,21 @@ else
     echo -e "$eros_prefix No eros devDependencies, we will start to clone new sdk..."
 fi
     echo -e "$eros_prefix \033[36mMay spend a lot of time, please wait patiently. \033[0m"
-    git clone https://github.com/bmfe/WeexErosFramework.git wxframework --depth=1 -q || \
+    git clone https://github.com/PoisonousMilkPowder/CustomWeexErosFramework.git wxframework --depth=1 -q || \
     error_exit 6
     echo -e "$eros_prefix Eros wxframework clone done."
-    git clone https://github.com/bmfe/WeexSDK.git sdk --depth=1 -q || \
+    git clone https://github.com/PoisonousMilkPowder/WeexSDK.git sdk --depth=1 -q || \
     error_exit 7
     echo -e "$eros_prefix Weex sdk clone done."
-    git clone https://github.com/bmfe/eros-nexus.git nexus --depth=1 -q || \
+    git clone https://github.com/PoisonousMilkPowder/eros-nexus.git nexus --depth=1 -q || \
     error_exit 8
     echo -e "$eros_prefix Eros nexus clone done."
-    git clone https://github.com/bmfe/eros-plugin-android-amap.git ErosPluginAmap --depth=1 -q || \
+    git clone https://github.com/PoisonousMilkPowder/eros-plugin-android-amap.git ErosPluginAmap --depth=1 -q || \
     error_exit 9
     echo -e "$eros_prefix Eros ErosPluginAmap clone done."
+    git clone https://github.com/PoisonousMilkPowder/version-plugin-temp.git version --depth=1 -q || \
+    error_exit 9
+    echo -e "$eros_prefix version clone done."
 
     echo ""
     echo -e "$eros_prefix \033[32mAndroid sdk has been installed, enjoy it! \033[0m"

@@ -15,6 +15,7 @@ import com.benmu.framework.model.RouterModel;
 import com.benmu.framework.model.TitleModel;
 import com.benmu.framework.model.WeexEventBean;
 import com.benmu.wx.R;
+import com.hm.wx.version.update.NativeVersionChecker;
 
 /**
  * Created by Carry on 2017/8/23.
@@ -22,12 +23,22 @@ import com.benmu.wx.R;
 
 public class SplashActivity extends Activity {
     private Handler mHandler = new Handler();
+    private NativeVersionChecker nv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         init();
+
+        nv = new NativeVersionChecker(this);
+        nv.readyNativeUpdate();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        nv.releaseAll();
     }
 
     private void init() {
