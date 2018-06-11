@@ -9,6 +9,7 @@
       }],
       "stage-0"
   ],
+  // 在你新增bui-weex的时候，一定要记住，新增这里，不然会报错。
   "plugins": [
     ["import",[{
         "libraryName": "weex-ui",
