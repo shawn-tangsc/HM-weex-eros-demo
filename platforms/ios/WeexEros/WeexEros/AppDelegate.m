@@ -22,7 +22,7 @@
 #import <BMBaseLibrary/BMAppResource.h>
 #import <BMBaseLibrary/BMDefine.h>
 #import <BMBaseLibrary/HYGuideView.h>
-#import <HMVersionPlugin/HMResourceManager.h>
+#import <HMVersionPlugin/HMVersionManager.h>
 @interface AppDelegate ()
 {
     BOOL _isLoad;
@@ -34,10 +34,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
+
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    
+
     /** 点击推送消息唤起app时调用方法 */
     if (TK_PlatformInfo().getui.enabled) {
         NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
@@ -45,16 +45,16 @@
             [BMPushMessageManager addPushNotification:notificationPayload];
         }
     }
-    
+
     if (_isLoad == NO) {
         _isLoad = YES;
-        
+
         [self startApp];
     }
-    
+
     /** 注册通知 当js更新文件准备就绪用户点击立即升级会触发这个方法 重新加载最新js资源文件 */
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startApp) name:K_BMAppReStartNotification object:nil];
-    
+
     return YES;
 }
 
@@ -81,7 +81,7 @@
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     if (TK_PlatformInfo().getui.enabled)
         [[BMPushMessageManager shareInstance] setIsLaunchedByNotification:NO];
-    
+
     [[UIApplication sharedApplication] cancelAllLocalNotifications];
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
 }
@@ -95,10 +95,10 @@
 {
     if (_isLoad == NO) {
         _isLoad = YES;
-        
+
         [self startApp];
     }
-    
+
     return [BMRouterManager application:application openURL:url sourceApplication:sourceApplication annotation:annotation];
 }
 
@@ -122,7 +122,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
-    
+
     /* 收到push消息 */
     if (TK_PlatformInfo().getui.enabled)
         [BMPushMessageManager receiveRemoteNotification:userInfo fetchCompletionHandler:completionHandler];
@@ -133,14 +133,14 @@
     /* 初始化数据 */
     [BMConfigManager configDefaultData];
     /** 应用最新js资源文件 */
-    [[HMResourceManager sharedInstance] compareVersion];
+    [HMVersionManager sharedInstance];
     /* 初始化push服务 */
     if (TK_PlatformInfo().getui.enabled)
         [BMPushMessageManager configPushService];
-    
+
     /** 加载页面 */
     [[BMMediatorManager shareInstance] loadViewControllerWithWindow:_window];
-    
+
 }
 
 
