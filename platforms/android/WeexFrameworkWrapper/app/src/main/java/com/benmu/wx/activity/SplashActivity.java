@@ -32,7 +32,7 @@ public class SplashActivity extends Activity {
         init();
 
         nv = new NativeVersionChecker(this);
-        nv.readyNativeUpdate();
+        nv.checkNativeUpdate("https://appserver.anxintrust.net/nodejs/app/checkClientVersion", "home-app");
     }
 
     @Override

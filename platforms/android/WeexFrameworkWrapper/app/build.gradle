@@ -12,6 +12,7 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
         ndk {
             abiFilters "x86"
             abiFilters "armeabi"
@@ -103,5 +104,11 @@ dependencies {
     compile "com.android.support:support-v4:${PROJECT_SUPPORTLIBVERSION}"
     testCompile 'junit:junit:4.12'
     compile project(':wxframework')
-    compile project(':version')
+//    implementation 'com.github.bmfe.eros-nexus:nexus:1.0.3'
+//    implementation 'com.github.bmfe:WeexErosFramework:1.0.4'
+//    implementation 'com.github.bmfe:eros-plugin-android-getui:1.1.0'
+//    implementation 'com.github.bmfe:eros-plugin-android-wxshare:1.1.0'
+//    implementation 'com.github.bmfe:eros-plugin-android-wxpay:1.1.0'
+//    compile project(':version')
+    implementation 'com.github.PoisonousMilkPowder:HMVersionPlugin:0.0.1'
 }
