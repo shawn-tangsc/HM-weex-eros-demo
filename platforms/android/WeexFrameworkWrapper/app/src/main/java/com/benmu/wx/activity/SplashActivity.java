@@ -12,7 +12,6 @@ import com.benmu.framework.manager.impl.ParseManager;
 import com.benmu.framework.manager.impl.VersionManager;
 import com.benmu.framework.manager.impl.dispatcher.DispatchEventManager;
 import com.benmu.framework.model.RouterModel;
-import com.benmu.framework.model.TitleModel;
 import com.benmu.framework.model.WeexEventBean;
 import com.benmu.wx.R;
 import com.hm.wx.version.update.NativeVersionChecker;
@@ -23,22 +22,17 @@ import com.hm.wx.version.update.NativeVersionChecker;
 
 public class SplashActivity extends Activity {
     private Handler mHandler = new Handler();
-    private NativeVersionChecker nv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         init();
-
-        nv = new NativeVersionChecker(this);
-        nv.checkNativeUpdate("https://appserver.anxintrust.net/nodejs/app/checkClientVersion", "home-app");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        nv.releaseAll();
     }
 
     private void init() {

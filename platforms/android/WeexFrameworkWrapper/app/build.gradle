@@ -110,5 +110,5 @@ dependencies {
 //    implementation 'com.github.bmfe:eros-plugin-android-wxshare:1.1.0'
 //    implementation 'com.github.bmfe:eros-plugin-android-wxpay:1.1.0'
 //    compile project(':version')
-    implementation 'com.github.PoisonousMilkPowder:HMVersionPlugin:0.0.1'
+    implementation 'com.github.PoisonousMilkPowder:HMVersionPlugin:0.0.3'
 }
